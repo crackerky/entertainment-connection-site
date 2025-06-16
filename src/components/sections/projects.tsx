@@ -89,7 +89,7 @@ export default function ClientShowcase() {
                 <span className="text-white text-4xl">🎪</span>
               </div>
               <p className="text-gray-700 mb-4 italic">
-                "実際にファン数が3倍に増えたことはもちろん、リアルイベント参加者のオンライン参加が促された結果、総売上は5倍に増加しました。"
+                「実際にファン数が3倍に増えたことはもちろん、リアルイベント参加者のオンライン参加が促された結果、総売上は5倍に増加しました。」
               </p>
               <div className="border-t pt-4">
                 <p className="font-semibold text-gray-900">某大手音楽プロダクション</p>
@@ -105,7 +105,7 @@ export default function ClientShowcase() {
                 <span className="text-white text-4xl">📱</span>
               </div>
               <p className="text-gray-700 mb-4 italic">
-                "1社でアプリ開発〜ファン管理、CRM機能まで完結できる。これからの時代に合わせた機能追加への期待感がありました。"
+                「1社でアプリ開発〜ファン管理、CRM機能まで完結できる。これからの時代に合わせた機能追加への期待感がありました。」
               </p>
               <div className="border-t pt-4">
                 <p className="font-semibold text-gray-900">某アニメ制作会社</p>
@@ -121,7 +121,7 @@ export default function ClientShowcase() {
                 <span className="text-white text-4xl">🎭</span>
               </div>
               <p className="text-gray-700 mb-4 italic">
-                "ファンクラブリニューアル前後でイベント参加率は約3倍に。特にロイヤルファンのリピート率が大きく向上しました。"
+                「ファンクラブリニューアル前後でイベント参加率は約3倍に。特にロイヤルファンのリピート率が大きく向上しました。」
               </p>
               <div className="border-t pt-4">
                 <p className="font-semibold text-gray-900">某劇団</p>
