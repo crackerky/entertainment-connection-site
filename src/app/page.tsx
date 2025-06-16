@@ -1,8 +1,8 @@
 import Hero from '@/components/sections/hero'
 import Services from '@/components/sections/services'
-import Projects from '@/components/sections/projects'
-import Features from '@/components/sections/features'
-import Mission from '@/components/sections/mission'
+import ClientShowcase from '@/components/sections/projects'
+import PricingPlans from '@/components/sections/features'
+import FAQ from '@/components/sections/mission'
 import Testimonials from '@/components/sections/testimonials'
 import Team from '@/components/sections/team'
 import CTA from '@/components/sections/cta'
@@ -13,9 +13,9 @@ export default function Home() {
     <>
       <Hero />
       <Services />
-      <Projects />
-      <Features />
-      <Mission />
+      <ClientShowcase />
+      <PricingPlans />
+      <FAQ />
       <Testimonials />
       <Team />
       <CTA />
