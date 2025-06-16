@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 静的エクスポートを有効化（完全な静的サイトの場合）
-  // output: 'export',
-  
   // 画像最適化の設定
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -63,12 +60,6 @@ const nextConfig = {
 
   // SWCによる高速化
   swcMinify: true,
-
-  // 実験的機能
-  experimental: {
-    // App Directoryの最適化
-    optimizeCss: true,
-  },
 }
 
 module.exports = nextConfig
