@@ -4,8 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { fadeInUp, staggerContainer, hoverScale, float, scrollReveal } from '@/lib/animations'
 import { advancedMicroInteractions, smartButton } from '@/lib/enhanced-animations'
 import { Button } from '@/components/ui/button'
-import { MagneticButton, InteractiveCard, AnimatedCounter } from '@/components/ui/enhanced-micro-interactions'
-import { AdvancedScrollReveal, StaggeredText } from '@/components/ui/advanced-scroll-animations'
+import { MagneticButton, InteractiveCard } from '@/components/ui/enhanced-micro-interactions'
+import { AdvancedScrollReveal, StaggeredText, AnimatedCounter } from '@/components/ui/advanced-scroll-animations'
 import { useRef } from 'react'
 
 export default function Hero() {
