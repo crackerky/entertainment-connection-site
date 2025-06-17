@@ -179,7 +179,21 @@ export function RippleButton({ children, onClick, className = '' }: MagneticButt
 
 // Particle System Background
 export function ParticleBackground({ particleCount = 50 }: { particleCount?: number }) {
+  const [dimensions, setDimensions] = useState({ width: 1000, height: 800 })
   const particles = Array.from({ length: particleCount }, (_, i) => i)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setDimensions({ width: window.innerWidth, height: window.innerHeight })
+      
+      const handleResize = () => {
+        setDimensions({ width: window.innerWidth, height: window.innerHeight })
+      }
+      
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -188,12 +202,12 @@ export function ParticleBackground({ particleCount = 50 }: { particleCount?: num
           key={i}
           className="absolute w-1 h-1 bg-violet-400 rounded-full opacity-20"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight
+            x: Math.random() * dimensions.width,
+            y: Math.random() * dimensions.height
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * dimensions.width,
+            y: Math.random() * dimensions.height,
             opacity: [0, 1, 0]
           }}
           transition={{
