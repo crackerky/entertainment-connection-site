@@ -1,75 +1,94 @@
-# エンタメ×つながり企業サイト
+# Entertainment Connect Site
 
-stores.funを参考にした、エンターテインメントとつながりをテーマにした企業サイトです。
+つながりをプロデュースし、エンタメで日本を動かす - Entertainment Connectの公式サイト
 
-## 技術スタック
+## 🎯 概要
 
-- **Next.js 14** (App Router)
-- **TypeScript**
-- **TailwindCSS**
-- **shadcn/ui**
-- **Framer Motion**
+このプロジェクトは、Entertainment Connectの理念・ビジョン・サービスを紹介する公式ウェブサイトです。
 
-## プロジェクト構成
+### 主な特徴
+
+- **最新のアニメーション技術**: Framer Motionを使用したマイクロインタラクションとスクロールトリガーアニメーション
+- **レスポンシブデザイン**: モバイルからデスクトップまで、すべてのデバイスに対応
+- **高パフォーマンス**: Next.js 14による高速なページロード
+- **モダンなUI/UX**: Tailwind CSSによる美しいデザイン
+
+## 🚀 技術スタック
+
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **UI Components**: Radix UI
+- **Icons**: Lucide React
+
+## 📦 インストール
+
+```bash
+# リポジトリのクローン
+git clone https://github.com/crackerky/entertainment-connection-site.git
+
+# ディレクトリへ移動
+cd entertainment-connection-site
+
+# 依存関係のインストール
+npm install
+```
+
+## 🏃‍♂️ 開発サーバーの起動
+
+```bash
+npm run dev
+```
+
+[http://localhost:3000](http://localhost:3000) でアプリケーションが起動します。
+
+## 🏗️ ビルド
+
+```bash
+npm run build
+```
+
+## 📁 プロジェクト構造
 
 ```
 src/
-├── app/                  # Next.js App Router
-├── components/          # コンポーネント
-│   ├── ui/             # shadcn/ui コンポーネント
-│   ├── layout/         # レイアウトコンポーネント
-│   └── sections/       # セクションコンポーネント
-├── lib/                # ユーティリティ関数
-└── types/              # TypeScript型定義
+├── app/              # Next.js App Router
+├── components/       # Reactコンポーネント
+│   ├── layout/      # レイアウトコンポーネント
+│   ├── sections/    # ページセクション
+│   └── ui/          # UIコンポーネント
+└── lib/             # ユーティリティとアニメーション
 ```
 
-## 特徴
-- **アニメーション**: Framer Motionによる滑らかなアニメーション
-- **レスポンシブ**: モバイルからデスクトップまで完全対応
-- **コンポーネント設計**: 再利用可能なコンポーネント構造
-- **型安全**: TypeScriptによる型安全性
+## 🎨 主なセクション
 
-## セットアップ
+1. **Hero**: メインビジュアルとキャッチコピー
+2. **Mission**: 理念 - つながりをプロデュースし、エンタメで日本を動かす
+3. **Vision**: ビジョン - エンタメの力で、日本を再び"世界一躍動する経済大国"へ
+4. **Why Us**: なぜ私たちなのか - 強みと差別化要因
+5. **Achievements**: 実績 - DealerStudio、埋め卓くんなどの成果
+6. **Services**: サービス一覧
+7. **FAQ**: よくある質問
 
-```bash
-# 依存関係のインストール
-npm install
+## 🎯 主要機能
 
-# 開発サーバーの起動
-npm run dev
+- **DealerStudio**: 採用管理システム（150名超の応募獲得）
+- **埋め卓くん**: 集客支援ツール（店舗の過去最高売上を更新）
+- **データ分析**: エンタメ業界特化の分析ツール
+- **イベント企画**: トータルサポート
 
-# ビルド
-npm run build
+## 📈 パフォーマンス最適化
 
-# 本番サーバーの起動
-npm start
-```
+- 画像の遅延読み込み
+- コンポーネントの動的インポート
+- アニメーションの最適化
+- CSSの最小化
 
-## Netlify デプロイメント設定
+## 🚀 デプロイ
 
-### 環境変数
+Netlifyでの自動デプロイが設定されています。mainブランチへのプッシュで自動的にデプロイされます。
 
-1. `.env.local.example` をコピーして `.env.local` を作成
-   ```bash
-   cp .env.local.example .env.local
-   ```
+## 📝 ライセンス
 
-2. Netlify の Personal Access Token を設定
-   - [Netlify User Settings](https://app.netlify.com/user/applications#personal-access-tokens) でトークンを生成
-   - `.env.local` に `NETLIFY_ACCESS_TOKEN` を設定
-
-### Netlify サイトでの環境変数設定
-
-Netlify のサイト設定で以下の環境変数を設定してください：
-
-1. Netlify ダッシュボードでサイトを選択
-2. Site settings → Environment variables に移動
-3. `NETLIFY_ACCESS_TOKEN` を追加（値は生成したトークン）
-
-### MCP (Model Context Protocol) サーバー連携
-
-このプロジェクトは Netlify MCP サーバーと連携して、Claude Code からの直接デプロイメントが可能です。
-
-## ライセンス
-
-MIT
+© 2025 Entertainment Connect. All rights reserved.
