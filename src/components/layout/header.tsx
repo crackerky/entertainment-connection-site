@@ -48,21 +48,26 @@ export default function Header() {
         boxShadow: headerShadow
       }}
     >
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo with Path Animation */}
           <motion.div
             className="flex items-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center">
-              <PathAnimation />
+              <div className="w-[280px] md:w-[320px]">
+                <PathAnimation />
+              </div>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.label}
@@ -100,7 +105,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2"
+            className="lg:hidden p-2"
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
           >
@@ -115,7 +120,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <motion.div
-          className={`md:hidden overflow-hidden`}
+          className={`lg:hidden overflow-hidden`}
           initial={{ height: 0 }}
           animate={{ height: isOpen ? 'auto' : 0 }}
           transition={{ duration: 0.3 }}
