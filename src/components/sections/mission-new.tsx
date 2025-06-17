@@ -54,7 +54,7 @@ export default function Mission() {
               「つながりをプロデュースし、エンタメで日本を動かす」
             </h3>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              私たちは、人と人の"交差点"をデザインし、そこから生まれる熱量を経済活力へと転換します。
+              私たちは、人と人の&ldquo;交差点&rdquo;をデザインし、そこから生まれる熱量を経済活力へと転換します。
             </p>
           </motion.div>
         </motion.div>
