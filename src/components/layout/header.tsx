@@ -1,83 +1,163 @@
 'use client'
 
-import { useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { scrollY } = useScroll()
+  
+  const headerBg = useTransform(
+    scrollY,
+    [0, 100],
+    ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']
+  )
+  
+  const headerShadow = useTransform(
+    scrollY,
+    [0, 100],
+    ['0px 0px 0px rgba(0,0,0,0)', '0px 4px 20px rgba(0,0,0,0.1)']
+  )
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navItems = [
-    { href: '#services', label: 'サービス' },
-    { href: '#projects', label: 'プロジェクト' },
-    { href: '#about', label: '私たちについて' },
-    { href: '#contact', label: 'お問い合わせ' },
+    { label: '理念', href: '#mission' },
+    { label: 'サービス', href: '#services' },
+    { label: '実績', href: '#achievements' },
+    { label: '料金', href: '#pricing' },
+    { label: 'お問い合わせ', href: '#contact' }
   ]
 
   return (
-    <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
+    <motion.header 
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md"
+      style={{
+        backgroundColor: headerBg,
+        boxShadow: headerShadow
+      }}
+    >
       <nav className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-purple-600">
-            エンタメ×つながり
-          </Link>
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            className="flex items-center space-x-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link href="/" className="flex items-center space-x-2">
+              <motion.div 
+                className="w-10 h-10 bg-gradient-to-br from-violet-600 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl"
+                animate={{ rotate: isScrolled ? 360 : 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                EC
+              </motion.div>
+              <span className="font-bold text-xl text-gray-900">Entertainment Connect</span>
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-gray-600 hover:text-purple-600 transition-colors"
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                {item.label}
-              </Link>
+                <Link 
+                  href={item.href}
+                  className="relative text-gray-700 hover:text-violet-600 transition-colors font-medium group"
+                >
+                  {item.label}
+                  <motion.span
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-violet-600 origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Link>
+              </motion.div>
             ))}
-            <Button className="bg-purple-600 hover:bg-purple-700">
-              無料相談
-            </Button>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Button 
+                className="bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all"
+              >
+                無料で始める
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
+          <motion.button
+            className="md:hidden p-2"
             onClick={() => setIsOpen(!isOpen)}
+            whileTap={{ scale: 0.9 }}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <motion.div
+              animate={{ rotate: isOpen ? 90 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.div>
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
+        <motion.div
+          className={`md:hidden overflow-hidden`}
+          initial={{ height: 0 }}
+          animate={{ height: isOpen ? 'auto' : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="py-4 space-y-4">
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link 
+                  href={item.href}
+                  className="block text-gray-700 hover:text-violet-600 transition-colors font-medium"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+            
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 20 }}
+              transition={{ delay: 0.5 }}
             >
-              <div className="flex flex-col space-y-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-gray-600 hover:text-purple-600 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <Button className="bg-purple-600 hover:bg-purple-700 w-full">
-                  無料相談
-                </Button>
-              </div>
+              <Button 
+                className="w-full bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white"
+              >
+                無料で始める
+              </Button>
             </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        </motion.div>
       </nav>
-    </header>
+    </motion.header>
   )
 }
