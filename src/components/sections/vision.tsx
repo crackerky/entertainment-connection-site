@@ -79,7 +79,7 @@ export default function Vision() {
                 transition: { duration: 1 }
               }}
             >
-              「エンタメの力で、日本を再び"世界一躍動する経済大国"へ」
+              「エンタメの力で、日本を再び&ldquo;世界一躍動する経済大国&rdquo;へ」
             </motion.h3>
           </motion.div>
         </motion.div>
