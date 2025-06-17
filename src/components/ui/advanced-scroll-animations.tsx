@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion'
 import { useRef, useEffect, useState, ReactNode } from 'react'
+import Image from 'next/image'
 
 // Enhanced Scroll Reveal with Multiple Triggers
 interface AdvancedScrollRevealProps {
@@ -92,6 +93,11 @@ export function Image3DGallery({ images, className = '' }: Image3DGalleryProps) 
   const rotateX = useTransform(scrollYProgress, [0, 1], [45, -45])
   const rotateY = useTransform(scrollYProgress, [0, 1], [-30, 30])
 
+  // Pre-calculate rotation values for each image
+  const imageRotations = images.map((_, index) => 
+    useTransform(rotateY, value => value + (index * 5))
+  )
+
   return (
     <div ref={ref} className={`perspective-1000 ${className}`}>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -100,15 +106,17 @@ export function Image3DGallery({ images, className = '' }: Image3DGalleryProps) 
             key={index}
             style={{
               rotateX,
-              rotateY: useTransform(rotateY, value => value + (index * 5)),
+              rotateY: imageRotations[index],
               transformStyle: "preserve-3d"
             }}
             whileHover={{ scale: 1.1, z: 50 }}
             className="relative group cursor-pointer"
           >
-            <img 
+            <Image 
               src={image} 
               alt={`Gallery image ${index + 1}`}
+              width={400}
+              height={160}
               className="w-full h-40 object-cover rounded-lg shadow-lg group-hover:shadow-2xl transition-shadow"
             />
             <motion.div
@@ -303,17 +311,22 @@ export function ScrollImageSwap({ images, className = '' }: ScrollImageSwapProps
   return (
     <div ref={ref} className={`relative ${className}`}>
       {images.map((image, index) => (
-        <motion.img
+        <motion.div
           key={index}
-          src={image}
-          alt={`Scroll image ${index + 1}`}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full"
           animate={{
             opacity: currentIndex === index ? 1 : 0,
             scale: currentIndex === index ? 1 : 1.1
           }}
           transition={{ duration: 0.5 }}
-        />
+        >
+          <Image
+            src={image}
+            alt={`Scroll image ${index + 1}`}
+            fill
+            className="object-cover"
+          />
+        </motion.div>
       ))}
     </div>
   )
