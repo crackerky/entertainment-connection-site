@@ -25,8 +25,21 @@ function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string
   )
 }
 
+type StatItem = 
+  | { label: string; value: number; suffix: string; isText?: false; before?: undefined; after?: undefined; improvement?: undefined; }
+  | { label: string; value: string; isText: true; suffix?: undefined; before?: undefined; after?: undefined; improvement?: undefined; }
+  | { label: string; before: string; after: string; improvement: string; value?: undefined; suffix?: undefined; isText?: false; }
+
+interface Achievement {
+  id: number;
+  title: string;
+  stats: StatItem[];
+  icon: string;
+  color: string;
+}
+
 export default function Achievements() {
-  const achievements = [
+  const achievements: Achievement[] = [
     {
       id: 1,
       title: 'DealerStudio',
@@ -122,9 +135,9 @@ export default function Achievements() {
                       custom={statIndex * 0.1}
                     >
                       <p className="text-sm text-gray-600 mb-1">{stat.label}</p>
-                      {stat.isText ? (
+                      {'isText' in stat && stat.isText ? (
                         <p className="text-2xl font-bold text-gradient">{stat.value}</p>
-                      ) : stat.before ? (
+                      ) : 'before' in stat && stat.before ? (
                         <div className="flex items-center justify-center gap-2">
                           <span className="text-lg line-through text-gray-400">{stat.before}</span>
                           <span className="text-2xl font-bold text-gradient">→ {stat.after}</span>
@@ -132,7 +145,7 @@ export default function Achievements() {
                         </div>
                       ) : (
                         <p className="text-3xl font-bold text-gradient">
-                          <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                          <AnimatedNumber value={stat.value as number} suffix={stat.suffix} />
                         </p>
                       )}
                     </motion.div>
