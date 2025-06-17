@@ -1,18 +1,18 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Header from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Header from "@/components/layout/header"
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: 'Entertainment Connect | あらゆるエンタメの売上成長に。',
-  description: 'イベント企画・ライブ配信から、チケット販売・ファン管理まで。Entertainment Connect ですべて解決。',
+  title: "Entertainment Connect - つながりをプロデュースし、エンタメで日本を動かす",
+  description: "エンタメ業界のDXを加速する統合プラットフォーム。DealerStudio、埋め卓くんなど、採用から集客まで幅広くサポート。",
+  keywords: "エンタメ, DX, 採用管理, 集客支援, ポーカー, カジノ, イベント企画",
   openGraph: {
-    title: 'Entertainment Connect',
-    description: 'あらゆるエンタメの売上成長に。',
-    type: 'website',
+    title: "Entertainment Connect",
+    description: "つながりをプロデュースし、エンタメで日本を動かす",
+    images: ["/og-image.png"],
   },
 }
 
@@ -22,29 +22,25 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja">
+    <html lang="ja" className="scroll-smooth">
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#7c3aed" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
         <Header />
-        <main>{children}</main>
-        <Footer />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/sw.js');
-                });
-              }
-            `,
-          }}
-        />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <footer className="bg-gray-900 text-white py-12">
+          <div className="container mx-auto px-4">
+            <div className="text-center">
+              <p className="text-sm opacity-75">
+                © 2025 Entertainment Connect. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   )
