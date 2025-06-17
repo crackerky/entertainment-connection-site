@@ -2,7 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { fadeInUp, staggerContainer, hoverScale, float, scrollReveal } from '@/lib/animations'
+import { advancedMicroInteractions, smartButton } from '@/lib/enhanced-animations'
 import { Button } from '@/components/ui/button'
+import { MagneticButton, InteractiveCard, AnimatedCounter } from '@/components/ui/enhanced-micro-interactions'
+import { AdvancedScrollReveal, StaggeredText } from '@/components/ui/advanced-scroll-animations'
 import { useRef } from 'react'
 
 export default function Hero() {
@@ -42,25 +45,20 @@ export default function Hero() {
         animate="animate"
         style={{ opacity }}
       >
-        <motion.h1
-          variants={fadeInUp}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-        >
-          <motion.span 
-            className="block text-gray-900"
-            whileInView={{ opacity: [0, 1], y: [20, 0] }}
-            transition={{ duration: 0.8 }}
-          >
-            つながりをプロデュースし、
-          </motion.span>
-          <motion.span 
-            className="block bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent"
-            whileInView={{ opacity: [0, 1], y: [20, 0] }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            エンタメで日本を動かす
-          </motion.span>
-        </motion.h1>
+        <AdvancedScrollReveal direction="up" delay={0.2}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <StaggeredText 
+              text="つながりをプロデュースし、"
+              className="block text-gray-900"
+              delay={0}
+            />
+            <StaggeredText 
+              text="エンタメで日本を動かす"
+              className="block bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent"
+              delay={0.5}
+            />
+          </h1>
+        </AdvancedScrollReveal>
         
         <motion.p
           variants={fadeInUp}
@@ -69,51 +67,34 @@ export default function Hero() {
           人と人の&ldquo;交差点&rdquo;をデザインし、そこから生まれる熱量を経済活力へと転換します
         </motion.p>
         
-        <motion.div
-          variants={fadeInUp}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-        >
-          <motion.div {...hoverScale} whileHover={{ boxShadow: '0 20px 40px rgba(139, 92, 246, 0.3)' }}>
-            <Button 
-              size="lg" 
-              className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transition-all shimmer"
-            >
+        <AdvancedScrollReveal direction="up" delay={0.8}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <MagneticButton className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transition-all">
               無料で始める
-            </Button>
-          </motion.div>
-          <motion.div {...hoverScale}>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-violet-600 text-violet-600 hover:bg-violet-50 px-8 py-4 text-lg rounded-xl hover-lift"
-            >
+            </MagneticButton>
+            <MagneticButton className="border-2 border-violet-600 text-violet-600 hover:bg-violet-50 px-8 py-4 text-lg rounded-xl bg-white">
               資料ダウンロード
-            </Button>
-          </motion.div>
-        </motion.div>
+            </MagneticButton>
+          </div>
+        </AdvancedScrollReveal>
 
-        {/* Hero visual with animation */}
-        <motion.div
-          variants={fadeInUp}
-          className="relative max-w-4xl mx-auto"
-        >
-          <motion.div 
-            className="bg-gradient-to-r from-violet-500 to-blue-600 rounded-3xl p-8 shadow-2xl gradient-animate"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
-              <motion.div 
-                className="text-6xl mb-4"
-                {...float}
-              >
-                🎭
-              </motion.div>
-              <h3 className="text-2xl font-bold mb-4">Entertainment Connect</h3>
-              <p className="text-lg opacity-90">エンタメ業界のDXを加速する統合プラットフォーム</p>
-            </div>
-          </motion.div>
-        </motion.div>
+        {/* Hero visual with enhanced animation */}
+        <AdvancedScrollReveal direction="scale" delay={1.0}>
+          <div className="relative max-w-4xl mx-auto">
+            <InteractiveCard className="bg-gradient-to-r from-violet-500 to-blue-600 rounded-3xl p-8 shadow-2xl">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
+                <motion.div 
+                  className="text-6xl mb-4"
+                  {...float}
+                >
+                  🎭
+                </motion.div>
+                <h3 className="text-2xl font-bold mb-4">Entertainment Connect</h3>
+                <p className="text-lg opacity-90">エンタメ業界のDXを加速する統合プラットフォーム</p>
+              </div>
+            </InteractiveCard>
+          </div>
+        </AdvancedScrollReveal>
 
         {/* Services preview with micro-interactions */}
         <motion.div
@@ -131,23 +112,22 @@ export default function Hero() {
               { emoji: '📊', text: 'データ分析', description: '売上・顧客分析' },
               { emoji: '🎪', text: 'イベント企画', description: 'トータルサポート' }
             ].map((service, index) => (
-              <motion.div
+              <AdvancedScrollReveal 
                 key={index}
-                className="flex flex-col items-center group cursor-pointer"
-                variants={scrollReveal}
-                custom={index * 0.1}
-                whileHover={{ y: -10 }}
+                direction="up" 
+                delay={1.2 + index * 0.1}
               >
-                <motion.div 
-                  className="w-16 h-16 bg-gradient-to-br from-violet-100 to-blue-100 rounded-2xl flex items-center justify-center mb-3 group-hover:shadow-lg transition-all glow"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <span className="text-2xl">{service.emoji}</span>
-                </motion.div>
-                <span className="text-sm font-semibold text-gray-900">{service.text}</span>
-                <span className="text-xs text-gray-600 mt-1">{service.description}</span>
-              </motion.div>
+                <InteractiveCard className="flex flex-col items-center group cursor-pointer">
+                  <motion.div 
+                    className="w-16 h-16 bg-gradient-to-br from-violet-100 to-blue-100 rounded-2xl flex items-center justify-center mb-3 group-hover:shadow-lg transition-all"
+                    {...advancedMicroInteractions.morphingShape}
+                  >
+                    <span className="text-2xl">{service.emoji}</span>
+                  </motion.div>
+                  <span className="text-sm font-semibold text-gray-900">{service.text}</span>
+                  <span className="text-xs text-gray-600 mt-1">{service.description}</span>
+                </InteractiveCard>
+              </AdvancedScrollReveal>
             ))}
           </div>
           
