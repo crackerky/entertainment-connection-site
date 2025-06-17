@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import PathAnimation from '@/components/ui/svg-path-drawing-text-animation'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -49,21 +50,14 @@ export default function Header() {
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Path Animation */}
           <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Link href="/" className="flex items-center space-x-2">
-              <motion.div 
-                className="w-10 h-10 bg-gradient-to-br from-violet-600 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl"
-                animate={{ rotate: isScrolled ? 360 : 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                EC
-              </motion.div>
-              <span className="font-bold text-xl text-gray-900">Entertainment Connect</span>
+            <Link href="/" className="flex items-center">
+              <PathAnimation />
             </Link>
           </motion.div>
 
