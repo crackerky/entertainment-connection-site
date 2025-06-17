@@ -93,11 +93,6 @@ export function Image3DGallery({ images, className = '' }: Image3DGalleryProps) 
   const rotateX = useTransform(scrollYProgress, [0, 1], [45, -45])
   const rotateY = useTransform(scrollYProgress, [0, 1], [-30, 30])
 
-  // Pre-calculate rotation values for each image
-  const imageRotations = images.map((_, index) => 
-    useTransform(rotateY, value => value + (index * 5))
-  )
-
   return (
     <div ref={ref} className={`perspective-1000 ${className}`}>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -106,10 +101,13 @@ export function Image3DGallery({ images, className = '' }: Image3DGalleryProps) 
             key={index}
             style={{
               rotateX,
-              rotateY: imageRotations[index],
               transformStyle: "preserve-3d"
             }}
-            whileHover={{ scale: 1.1, z: 50 }}
+            whileHover={{ 
+              scale: 1.1, 
+              z: 50,
+              rotateY: index * 5 
+            }}
             className="relative group cursor-pointer"
           >
             <Image 
