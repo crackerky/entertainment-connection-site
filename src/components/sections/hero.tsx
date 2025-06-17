@@ -66,7 +66,7 @@ export default function Hero() {
           variants={fadeInUp}
           className="text-lg md:text-xl text-gray-600 mb-8 max-w-4xl mx-auto"
         >
-          人と人の"交差点"をデザインし、そこから生まれる熱量を経済活力へと転換します
+          人と人の&ldquo;交差点&rdquo;をデザインし、そこから生まれる熱量を経済活力へと転換します
         </motion.p>
         
         <motion.div
@@ -155,8 +155,8 @@ export default function Hero() {
             className="text-lg text-gray-600 mt-8 max-w-3xl mx-auto"
             variants={fadeInUp}
           >
-            エンタメ産業を"内需 × 外貨"の二本柱に成長させ、<br />
-            日本を再び"世界一躍動する経済大国"へ
+            エンタメ産業を&ldquo;内需 × 外貨&rdquo;の二本柱に成長させ、<br />
+            日本を再び&ldquo;世界一躍動する経済大国&rdquo;へ
           </motion.p>
         </motion.div>
       </motion.div>
