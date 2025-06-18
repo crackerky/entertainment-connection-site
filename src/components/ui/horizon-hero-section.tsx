@@ -25,7 +25,7 @@ export const HorizonHeroSection = () => {
   const cameraVelocity = useRef({ x: 0, y: 0, z: 0 });
   
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [currentSection, setCurrentSection] = useState(1);
+  const [currentSection, setCurrentSection] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const totalSections = 3;
   
@@ -81,7 +81,7 @@ export const HorizonHeroSection = () => {
       refs.renderer.setSize(window.innerWidth, window.innerHeight);
       refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       refs.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      refs.renderer.toneMappingExposure = 0.5;
+      refs.renderer.toneMappingExposure = 0.3; // Reduced from 0.5
 
       // Post-processing
       refs.composer = new EffectComposer(refs.renderer);
@@ -90,8 +90,8 @@ export const HorizonHeroSection = () => {
 
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        0.8,
-        0.4,
+        0.5, // Reduced from 0.8
+        0.3, // Reduced from 0.4
         0.85
       );
       refs.composer.addPass(bloomPass);
@@ -112,7 +112,7 @@ export const HorizonHeroSection = () => {
 
     const createStarField = () => {
       const { current: refs } = threeRefs;
-      const starCount = 5000;
+      const starCount = 3000; // Reduced from 5000
       
       for (let i = 0; i < 3; i++) {
         const geometry = new THREE.BufferGeometry();
@@ -147,7 +147,7 @@ export const HorizonHeroSection = () => {
           colors[j * 3 + 1] = color.g;
           colors[j * 3 + 2] = color.b;
 
-          sizes[j] = Math.random() * 2 + 0.5;
+          sizes[j] = Math.random() * 1.5 + 0.3; // Reduced size
         }
 
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -188,7 +188,7 @@ export const HorizonHeroSection = () => {
               if (dist > 0.5) discard;
               
               float opacity = 1.0 - smoothstep(0.0, 0.5, dist);
-              gl_FragColor = vec4(vColor, opacity);
+              gl_FragColor = vec4(vColor, opacity * 0.6); // Reduced opacity
             }
           `,
           transparent: true,
@@ -212,7 +212,7 @@ export const HorizonHeroSection = () => {
           color1: { value: new THREE.Color(45/255, 86/255, 160/255) }, // Primary blue
           color2: { value: new THREE.Color(105/255, 175/255, 98/255) }, // Secondary green
           color3: { value: new THREE.Color(188/255, 213/255, 48/255) }, // Accent yellow-green
-          opacity: { value: 0.3 }
+          opacity: { value: 0.15 } // Reduced from 0.3
         },
         vertexShader: `
           varying vec2 vUv;
@@ -269,10 +269,10 @@ export const HorizonHeroSection = () => {
       const { current: refs } = threeRefs;
       
       const layers = [
-        { distance: -50, height: 60, color: 0x2d56a0, opacity: 1 }, // Primary blue
-        { distance: -100, height: 80, color: 0x69af62, opacity: 0.8 }, // Secondary green
-        { distance: -150, height: 100, color: 0x4d7044, opacity: 0.6 }, // Darker green
-        { distance: -200, height: 120, color: 0x2d3a50, opacity: 0.4 } // Dark blue
+        { distance: -50, height: 60, color: 0x2d56a0, opacity: 0.8 }, // Reduced opacity
+        { distance: -100, height: 80, color: 0x69af62, opacity: 0.6 }, // Reduced opacity
+        { distance: -150, height: 100, color: 0x4d7044, opacity: 0.4 }, // Reduced opacity
+        { distance: -200, height: 120, color: 0x2d3a50, opacity: 0.3 } // Reduced opacity
       ];
 
       layers.forEach((layer, index) => {
@@ -342,7 +342,7 @@ export const HorizonHeroSection = () => {
             float pulse = sin(time * 2.0) * 0.1 + 0.9;
             atmosphere *= pulse;
             
-            gl_FragColor = vec4(atmosphere, intensity * 0.25);
+            gl_FragColor = vec4(atmosphere, intensity * 0.15); // Reduced opacity
           }
         `,
         side: THREE.BackSide,
@@ -520,30 +520,33 @@ export const HorizonHeroSection = () => {
     };
   }, [isReady]);
 
-  // Scroll handling
+  // Scroll handling - for internal sections only
   useEffect(() => {
     const handleScroll = () => {
+      const heroSections = containerRef.current?.querySelectorAll('.hero-section');
+      if (!heroSections) return;
+
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const maxScroll = documentHeight - windowHeight;
-      const progress = Math.min(scrollY / maxScroll, 1);
       
-      setScrollProgress(progress);
-      const newSection = Math.floor(progress * totalSections);
+      // Calculate section within hero only
+      const heroHeight = windowHeight * 3; // 3 sections
+      const heroProgress = Math.min(scrollY / heroHeight, 1);
+      
+      setScrollProgress(heroProgress);
+      const newSection = Math.min(Math.floor(heroProgress * totalSections), totalSections - 1);
       setCurrentSection(newSection);
 
       const { current: refs } = threeRefs;
       
-      // Calculate smooth progress through all sections
-      const totalProgress = progress * totalSections;
-      const sectionProgress = totalProgress % 1;
+      // Calculate smooth progress through hero sections
+      const sectionProgress = (heroProgress * totalSections) % 1;
       
       // Define camera positions for each section
       const cameraPositions = [
-        { x: 0, y: 30, z: 300 },    // Section 0 - HORIZON
-        { x: 0, y: 40, z: -50 },     // Section 1 - COSMOS
-        { x: 0, y: 50, z: -700 }       // Section 2 - INFINITY
+        { x: 0, y: 30, z: 300 },    // Section 0 - MISSION
+        { x: 0, y: 40, z: -50 },     // Section 1 - VISION
+        { x: 0, y: 50, z: -700 }     // Section 2 - INFINITY
       ];
       
       // Get current and next positions
@@ -560,15 +563,15 @@ export const HorizonHeroSection = () => {
         const speed = 1 + i * 0.9;
         const targetZ = mountain.userData.baseZ + scrollY * speed * 0.5;
         if (refs.nebula) {
-          refs.nebula.position.z = (targetZ + progress * speed * 0.01) - 100;
+          refs.nebula.position.z = (targetZ + heroProgress * speed * 0.01) - 100;
         }
         
         // Use the same smoothing approach
         mountain.userData.targetZ = targetZ;
-        if (progress > 0.7) {
+        if (heroProgress > 0.7) {
           mountain.position.z = 600000;
         }
-        if (progress < 0.7) {
+        if (heroProgress < 0.7) {
           mountain.position.z = refs.locations[i];
         }
       });
@@ -593,7 +596,7 @@ export const HorizonHeroSection = () => {
   };
 
   return (
-    <div ref={containerRef} className="hero-container cosmos-style">
+    <div ref={containerRef} className="hero-container-wrapper">
       <canvas ref={canvasRef} className="hero-canvas" />
       
       {/* Side menu */}
@@ -606,19 +609,21 @@ export const HorizonHeroSection = () => {
         <div className="vertical-text">エンタメ</div>
       </div>
 
-      {/* Main content */}
-      <div className="hero-content cosmos-content">
-        <h1 ref={titleRef} className="hero-title">
-          {splitTitle('MISSION')}
-        </h1>
-        
-        <div ref={subtitleRef} className="hero-subtitle cosmos-subtitle">
-          <p className="subtitle-line">
-            つながりをプロデュースし、
-          </p>
-          <p className="subtitle-line">
-            エンタメで日本を動かす
-          </p>
+      {/* Main hero section */}
+      <div className="hero-section min-h-screen relative z-20 flex items-center justify-center">
+        <div className="hero-content cosmos-content">
+          <h1 ref={titleRef} className="hero-title">
+            {splitTitle('MISSION')}
+          </h1>
+          
+          <div ref={subtitleRef} className="hero-subtitle cosmos-subtitle">
+            <p className="subtitle-line">
+              つながりをプロデュースし、
+            </p>
+            <p className="subtitle-line">
+              エンタメで日本を動かす
+            </p>
+          </div>
         </div>
       </div>
 
@@ -632,20 +637,16 @@ export const HorizonHeroSection = () => {
           />
         </div>
         <div className="section-counter">
-          {String(currentSection).padStart(2, '0')} / {String(totalSections).padStart(2, '0')}
+          {String(currentSection + 1).padStart(2, '0')} / {String(totalSections).padStart(2, '0')}
         </div>
       </div>
 
-      {/* Additional sections for scrolling */}
-      <div className="scroll-sections">
-       {[...Array(3)].map((_, i) => {
+      {/* Additional hero sections */}
+      <div className="hero-sections-container">
+       {[...Array(2)].map((_, i) => {
           // Use arrays instead of objects with numeric keys
-          const titles = ['MISSION', 'VISION', 'INFINITY'];
+          const titles = ['VISION', 'INFINITY'];
           const subtitles = [
-            {
-              line1: '私たちは、人と人の"交差点"をデザインし、',
-              line2: 'そこから生まれる熱量を経済活力へと転換します'
-            },
             {
               line1: 'エンタメの力で、',
               line2: '日本を再び"世界一躍動する経済大国"へ'
@@ -657,20 +658,22 @@ export const HorizonHeroSection = () => {
           ];
           
           return (
-            <section key={i} className="content-section">
-              <h1 className="hero-title">
-                {titles[i] || 'DEFAULT'}
-              </h1>
-          
-              <div className="hero-subtitle cosmos-subtitle">
-                <p className="subtitle-line">
-                  {subtitles[i]?.line1}
-                </p>
-                <p className="subtitle-line">
-                  {subtitles[i]?.line2}
-                </p>
+            <div key={i} className="hero-section min-h-screen relative z-20 flex items-center justify-center">
+              <div className="hero-content cosmos-content">
+                <h1 className="hero-title">
+                  {splitTitle(titles[i] || 'DEFAULT')}
+                </h1>
+            
+                <div className="hero-subtitle cosmos-subtitle">
+                  <p className="subtitle-line">
+                    {subtitles[i]?.line1}
+                  </p>
+                  <p className="subtitle-line">
+                    {subtitles[i]?.line2}
+                  </p>
+                </div>
               </div>
-            </section>
+            </div>
           );
         })}
       </div>
