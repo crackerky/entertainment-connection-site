@@ -19,36 +19,40 @@ export default function Vision() {
       icon: '💰',
       title: 'エンタメ産業を"内需 × 外貨"の二本柱に',
       description: '国内市場の活性化と海外展開を同時推進',
-      color: 'from-purple-500 to-pink-500'
+      gradient: 'from-primary to-secondary'
     },
     {
       icon: '🌏',
       title: '日本の文化・サービスを世界基準のIPへ',
       description: 'グローバル市場で勝負できるコンテンツ育成',
-      color: 'from-blue-500 to-cyan-500'
+      gradient: 'from-secondary to-accent'
     },
     {
       icon: '🚀',
       title: '新しい働き方・雇用を創出',
       description: '若い才能が挑戦できる土壌をつくる',
-      color: 'from-green-500 to-emerald-500'
+      gradient: 'from-accent to-primary'
     }
   ]
 
   return (
-    <section ref={containerRef} className="py-20 bg-gradient-to-br from-gray-900 via-violet-900 to-gray-900 text-white relative overflow-hidden">
-      {/* Animated background elements */}
-      <motion.div className="absolute inset-0">
+    <section ref={containerRef} className="py-20 bg-gradient-to-br from-white via-secondary/10 to-accent/10 relative overflow-hidden">
+      {/* Abstract animated shapes */}
+      <div className="absolute inset-0">
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-violet-500 rounded-full blur-3xl opacity-20"
+          className="absolute top-0 left-0 w-full h-full pattern-grid opacity-20"
+        />
+        <motion.div 
+          className="absolute top-20 -left-20 w-96 h-96 bg-secondary/30 morph blur-3xl"
           style={{ scale, rotate }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-20"
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 20, repeat: Infinity }}
+          className="absolute bottom-20 -right-20 w-80 h-80 bg-accent/30 blob-shape blur-3xl float-1"
         />
-      </motion.div>
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/20 organic-shape blur-2xl float-2"
+        />
+      </div>
 
       <motion.div
         className="container mx-auto px-4 relative z-10"
@@ -59,7 +63,7 @@ export default function Vision() {
       >
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient-vibrant"
             {...scrollReveal}
           >
             作りたい世界（Vision）
@@ -70,13 +74,10 @@ export default function Vision() {
             variants={fadeInUp}
           >
             <motion.h3 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 leading-tight"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 leading-tight text-primary"
               whileInView={{ 
-                backgroundImage: 'linear-gradient(to right, #8B5CF6, #3B82F6, #10B981)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                transition: { duration: 1 }
+                scale: [0.9, 1.05, 1],
+                transition: { duration: 0.5 }
               }}
             >
               「エンタメの力で、日本を再び&ldquo;世界一躍動する経済大国&rdquo;へ」
@@ -93,13 +94,17 @@ export default function Vision() {
               custom={index}
             >
               <motion.div 
-                className={`absolute inset-0 bg-gradient-to-br ${point.color} rounded-3xl opacity-10 group-hover:opacity-20 transition-opacity blur-xl`}
+                className={`absolute inset-0 bg-gradient-to-br ${point.gradient} rounded-3xl opacity-20 group-hover:opacity-30 transition-opacity blur-2xl`}
                 {...pulse}
               />
               
               <motion.div
-                className="relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:border-white/40 transition-all hover-lift"
-                whileHover={{ y: -10 }}
+                className="relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border-2 border-transparent hover:border-primary/20 transition-all hover-lift shadow-xl"
+                whileHover={{ 
+                  y: -10,
+                  rotateY: 5,
+                  rotateX: -5
+                }}
               >
                 <motion.div 
                   className="text-6xl mb-6 text-center"
@@ -108,13 +113,19 @@ export default function Vision() {
                   {point.icon}
                 </motion.div>
                 
-                <h4 className="text-xl font-bold mb-4 text-center">
+                <h4 className="text-xl font-bold mb-4 text-center text-primary">
                   {point.title}
                 </h4>
                 
-                <p className="text-gray-300 text-center">
+                <p className="text-gray-700 text-center">
                   {point.description}
                 </p>
+
+                <motion.div 
+                  className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r ${point.gradient} rounded-full`}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
               </motion.div>
             </motion.div>
           ))}
@@ -126,21 +137,27 @@ export default function Vision() {
           variants={fadeInUp}
         >
           <motion.div 
-            className="bg-gradient-to-r from-violet-600 via-blue-600 to-emerald-600 p-1 rounded-3xl gradient-animate"
+            className="bg-gradient-to-r from-primary via-secondary to-accent p-1 rounded-3xl gradient-animate neon-primary"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="bg-gray-900 rounded-3xl p-12 text-center">
+            <div className="bg-white rounded-3xl p-12 text-center">
               <motion.div 
-                className="text-8xl mb-6"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="text-8xl mb-6 inline-block"
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 3, repeat: Infinity }
+                }}
               >
                 🌐
               </motion.div>
-              <h4 className="text-2xl font-bold mb-4">
+              <h4 className="text-2xl font-bold mb-4 text-gradient-vibrant">
                 日本のエンタメを世界へ
               </h4>
-              <p className="text-gray-300 text-lg">
+              <p className="text-gray-700 text-lg">
                 テクノロジーとクリエイティビティの融合で、
                 新しいエンターテインメントの形を創造します
               </p>
@@ -148,6 +165,10 @@ export default function Vision() {
           </motion.div>
         </motion.div>
       </motion.div>
+
+      {/* Abstract floating elements */}
+      <div className="absolute top-10 right-10 w-32 h-32 bg-accent/20 rounded-full blur-2xl animate-float" />
+      <div className="absolute bottom-10 left-10 w-40 h-40 bg-primary/20 blob-shape blur-3xl animate-blob" />
     </section>
   )
 }
