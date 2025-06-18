@@ -11,12 +11,12 @@ import Achievements from '@/components/sections/achievements'
 
 export default function Home() {
   return (
-    <>
+    <main className="overflow-x-hidden">
       <HorizonHeroSection />
       <Mission />
       <Vision />
       <WhyUs />
       <Achievements />
-    </>
+    </main>
   )
 }
