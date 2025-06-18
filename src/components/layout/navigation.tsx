@@ -26,7 +26,9 @@ export const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => item.sectionId).filter(Boolean);
+      const sections = navItems
+        .map(item => item.sectionId)
+        .filter((sectionId): sectionId is string => Boolean(sectionId));
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -74,7 +76,7 @@ export const Navigation = () => {
             <span className="block w-6 h-0.5 bg-white transition-all duration-300 group-hover:w-8 group-hover:delay-75"></span>
             <span className="block w-6 h-0.5 bg-white transition-all duration-300 group-hover:w-8 group-hover:delay-150"></span>
           </div>
-          <div className="text-white text-sm tracking-widest" style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}>
+          <div className="text-white text-sm tracking-widest" style={{ writingMode: 'vertical-rl', textOrientation: 'upright' }}>
             エンタメ
           </div>
         </button>
