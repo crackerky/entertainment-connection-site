@@ -5,9 +5,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+
+// Dynamic imports for Three.js postprocessing modules
+let EffectComposer: any;
+let RenderPass: any;
+let UnrealBloomPass: any;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +46,16 @@ export const HorizonHeroSection = () => {
 
   // Initialize Three.js
   useEffect(() => {
-    const initThree = () => {
+    const initThree = async () => {
+      // Dynamic import of postprocessing modules
+      const { EffectComposer: EC } = await import('three/examples/jsm/postprocessing/EffectComposer.js');
+      const { RenderPass: RP } = await import('three/examples/jsm/postprocessing/RenderPass.js');
+      const { UnrealBloomPass: UBP } = await import('three/examples/jsm/postprocessing/UnrealBloomPass.js');
+      
+      EffectComposer = EC;
+      RenderPass = RP;
+      UnrealBloomPass = UBP;
+
       const { current: refs } = threeRefs;
       
       // Scene setup
@@ -393,7 +404,7 @@ export const HorizonHeroSection = () => {
       }
     };
 
-    initThree();
+    initThree().catch(console.error);
 
     // Handle resize
     const handleResize = () => {
