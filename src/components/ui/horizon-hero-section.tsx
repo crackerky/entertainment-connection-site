@@ -639,39 +639,35 @@ export const HorizonHeroSection = () => {
       {/* Additional sections for scrolling */}
       <div className="scroll-sections">
        {[...Array(2)].map((_, i) => {
-          const titles = {
-            0: 'HORIZON',
-            1: 'COSMOS',
-            2: 'INFINITY'
-          };
-          
-          const subtitles = {
-            0: {
+          // Use arrays instead of objects with numeric keys
+          const titles = ['HORIZON', 'COSMOS', 'INFINITY'];
+          const subtitles = [
+            {
               line1: 'つながりをプロデュースし、',
               line2: 'エンタメで日本を動かす'
             },
-            1: {
+            {
               line1: 'エンタメの力で、',
               line2: '日本を再び世界一躍動する経済大国へ'
             },
-            2: {
+            {
               line1: '実績と情熱で、',
               line2: 'あなたのビジネスを加速させます'
             }
-          };
+          ];
           
           return (
             <section key={i} className="content-section">
               <h1 className="hero-title">
-                {titles[i+1] || 'DEFAULT'}
+                {titles[i + 1] || 'DEFAULT'}
               </h1>
           
               <div className="hero-subtitle cosmos-subtitle">
                 <p className="subtitle-line">
-                  {subtitles[i+1]?.line1}
+                  {subtitles[i + 1]?.line1}
                 </p>
                 <p className="subtitle-line">
-                  {subtitles[i+1]?.line2}
+                  {subtitles[i + 1]?.line2}
                 </p>
               </div>
             </section>
