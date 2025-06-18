@@ -21,7 +21,7 @@ export const HorizonHeroSectionSimple = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentSection, setCurrentSection] = useState(1);
   const [isReady, setIsReady] = useState(false);
-  const totalSections = 2;
+  const totalSections = 3;
   
   const threeRefs = useRef<any>({
     scene: null,
@@ -440,7 +440,7 @@ export const HorizonHeroSectionSimple = () => {
 
       <div className="hero-content cosmos-content">
         <h1 ref={titleRef} className="hero-title">
-          {splitTitle('HORIZON')}
+          {splitTitle('MISSION')}
         </h1>
         
         <div ref={subtitleRef} className="hero-subtitle cosmos-subtitle">
@@ -467,17 +467,21 @@ export const HorizonHeroSectionSimple = () => {
       </div>
 
       <div className="scroll-sections">
-       {[...Array(2)].map((_, i) => {
+       {[...Array(3)].map((_, i) => {
           // Use arrays instead of objects with numeric keys
-          const titles = ['COSMOS', 'INFINITY'];
+          const titles = ['MISSION', 'VISION', 'INFINITY'];
           const subtitles = [
             {
+              line1: '私たちは、人と人の"交差点"をデザインし、',
+              line2: 'そこから生まれる熱量を経済活力へと転換します'
+            },
+            {
               line1: 'エンタメの力で、',
-              line2: '日本を再び世界一躍動する経済大国へ'
+              line2: '日本を再び"世界一躍動する経済大国"へ'
             },
             {
               line1: '実績と情熱で、',
-              line2: 'あなたのビジネスを加速させます'
+              line2: 'あなたのビジネスを10倍に加速させます'
             }
           ];
           
