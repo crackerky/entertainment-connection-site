@@ -1,6 +1,8 @@
+// src/app/layout.tsx
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { Footer } from "@/components/layout/footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -28,15 +30,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
         {children}
-        <footer className="bg-gray-900 text-white py-12">
-          <div className="container mx-auto px-4">
-            <div className="text-center">
-              <p className="text-sm opacity-75">
-                © 2025 Entertainment Connect. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   )

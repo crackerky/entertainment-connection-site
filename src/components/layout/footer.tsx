@@ -1,109 +1,228 @@
-import Link from 'next/link'
+// src/components/layout/footer.tsx
+'use client'
 
-export default function Footer() {
+import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  ArrowRight, 
+  Twitter, 
+  Facebook, 
+  Linkedin, 
+  Instagram,
+  Mail,
+  Phone,
+  MapPin
+} from 'lucide-react';
+
+export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const services = [
+    { name: 'DealerStudio', desc: '採用管理システム' },
+    { name: '埋め卓くん', desc: '集客支援ツール' },
+    { name: 'データ分析', desc: 'エンタメ業界特化' },
+    { name: 'イベント企画', desc: 'トータルサポート' }
+  ];
+
+  const quickLinks = [
+    { name: 'ホーム', href: '#hero' },
+    { name: 'ミッション', href: '#mission' },
+    { name: 'ビジョン', href: '#vision' },
+    { name: 'なぜ私たちなのか', href: '#why-us' },
+    { name: '実績', href: '#achievements' },
+    { name: 'お問い合わせ', href: '#contact' }
+  ];
+
+  const socialLinks = [
+    { name: 'Twitter', icon: Twitter, href: '#' },
+    { name: 'Facebook', icon: Facebook, href: '#' },
+    { name: 'LinkedIn', icon: Linkedin, href: '#' },
+    { name: 'Instagram', icon: Instagram, href: '#' }
+  ];
+
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">エンタメ×つながり</h3>
-            <p className="text-gray-400">
-              エンターテインメントの力で、
-              <br />
-              人と人をつなぎ、
-              <br />
-              新しい価値を創造します。
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl" />
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Company Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-2xl font-bold mb-4">
+              Entertainment<span className="text-gradient-primary"> Connect</span>
+            </h3>
+            <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+              つながりをプロデュースし、<br />
+              エンタメで日本を動かす
             </p>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">サービス</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  イベントプロデュース
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  デジタル体験設計
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  コンテンツ制作
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  ブランディング
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">会社情報</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  会社概要
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  チーム
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  キャリア
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  ニュース
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">お問い合わせ</h4>
-            <p className="text-gray-400 mb-2">
-              メール: info@entame-connection.jp
-            </p>
-            <p className="text-gray-400 mb-4">
-              電話: 03-1234-5678
-            </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                </svg>
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                  <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
-                  <circle cx="18.406" cy="5.594" r="1.44"/>
-                </svg>
-              </Link>
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-primary hover:to-secondary transition-all duration-300"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={social.name}
+                >
+                  <social.icon size={18} />
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
+
+          {/* Services */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h4 className="text-lg font-semibold mb-6">サービス</h4>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service.name}>
+                  <a href="#" className="group flex items-start gap-2 text-gray-400 hover:text-white transition-colors">
+                    <ArrowRight size={16} className="mt-0.5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div>
+                      <span className="block">{service.name}</span>
+                      <span className="text-xs text-gray-500">{service.desc}</span>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h4 className="text-lg font-semibold mb-6">クイックリンク</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <h4 className="text-lg font-semibold mb-6">お問い合わせ</h4>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <Mail size={18} className="text-primary mt-0.5" />
+                <div>
+                  <a href="mailto:info@entertainment-connect.jp" className="text-gray-400 hover:text-white transition-colors">
+                    info@entertainment-connect.jp
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone size={18} className="text-secondary mt-0.5" />
+                <div>
+                  <a href="tel:03-0000-0000" className="text-gray-400 hover:text-white transition-colors">
+                    03-0000-0000
+                  </a>
+                  <p className="text-xs text-gray-500 mt-1">平日 9:00-18:00</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-accent mt-0.5" />
+                <div className="text-gray-400 text-sm">
+                  〒100-0000<br />
+                  東京都千代田区XX-XX-XX<br />
+                  XXビル XX階
+                </div>
+              </li>
+            </ul>
+          </motion.div>
         </div>
-        
-        <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-400">
-            &copy; 2024 エンタメ×つながり. All rights reserved.
+
+        {/* Newsletter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="border-t border-gray-800 pt-12 mb-8"
+        >
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl font-bold mb-4">
+              最新情報をお届けします
+            </h3>
+            <p className="text-gray-400 mb-6">
+              エンタメ業界の最新トレンドやサービスアップデート情報をメールでお届けします
+            </p>
+            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="メールアドレスを入力"
+                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-primary transition-colors"
+              />
+              <motion.button
+                type="submit"
+                className="px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg font-medium hover:shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                登録する
+              </motion.button>
+            </form>
+          </div>
+        </motion.div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-400">
+            © {currentYear} Entertainment Connect. All rights reserved.
           </p>
+          <div className="flex gap-6 text-sm">
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              プライバシーポリシー
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              利用規約
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              特定商取引法に基づく表記
+            </a>
+          </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
