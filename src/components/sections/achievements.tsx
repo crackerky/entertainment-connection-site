@@ -83,13 +83,13 @@ export default function Achievements() {
 
   return (
     <section className="py-20 bg-gradient-modern relative overflow-hidden">
-      {/* Abstract animated background */}
+      {/* Abstract animated background with reduced opacity */}
       <div className="absolute inset-0">
         <motion.div 
-          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.5, 1],
-            opacity: [0.1, 0.3, 0.1],
+            opacity: [0.05, 0.15, 0.05],
           }}
           transition={{
             duration: 10,
@@ -98,7 +98,7 @@ export default function Achievements() {
           }}
         />
         <motion.div 
-          className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/10 blob-shape blur-3xl"
+          className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 blob-shape blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             rotate: [0, 180, 360],
@@ -121,7 +121,11 @@ export default function Achievements() {
       >
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient-vibrant"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+            style={{ 
+              color: 'rgb(220, 38, 50)',
+              textShadow: '0 0 30px rgba(220, 38, 50, 0.5), 0 0 60px rgba(220, 38, 50, 0.3), 0 0 90px rgba(220, 38, 50, 0.1)'
+            }}
             {...scrollReveal}
           >
             実績（Achievements）
@@ -141,9 +145,9 @@ export default function Achievements() {
                 className="group relative"
                 whileHover={{ y: -10, scale: 1.02 }}
               >
-                {/* Animated gradient background */}
+                {/* Animated gradient background with reduced opacity */}
                 <motion.div 
-                  className={`absolute -inset-1 bg-gradient-to-br ${achievement.gradient} rounded-3xl blur-md opacity-30 group-hover:opacity-60 transition-opacity`}
+                  className={`absolute -inset-1 bg-gradient-to-br ${achievement.gradient} rounded-3xl blur-md opacity-20 group-hover:opacity-40 transition-opacity`}
                   animate={{
                     scale: [1, 1.05, 1],
                   }}
@@ -232,9 +236,9 @@ export default function Achievements() {
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div 
-                    className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
                   />
-                  <div className="relative w-full h-full bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl flex items-center justify-center neon-accent group-hover:neon-primary transition-all">
+                  <div className="relative w-full h-full bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl flex items-center justify-center group-hover:shadow-lg transition-all">
                     <span className="text-4xl">{photo.emoji}</span>
                   </div>
                 </motion.div>
@@ -246,9 +250,9 @@ export default function Achievements() {
         </motion.div>
       </motion.div>
 
-      {/* Floating decorative elements */}
+      {/* Floating decorative elements with reduced opacity */}
       <motion.div 
-        className="absolute top-20 right-20 w-24 h-24 bg-secondary/20 organic-shape blur-2xl"
+        className="absolute top-20 right-20 w-24 h-24 bg-secondary/10 organic-shape blur-2xl"
         animate={{
           y: [-30, 30, -30],
           x: [20, -20, 20],
