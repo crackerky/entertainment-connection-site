@@ -1,7 +1,7 @@
-import PathAnimation from "@/components/ui/svg-path-drawing-text-animation";
+import { HorizonHeroSection } from "@/components/ui/horizon-hero-section";
 
 const DemoOne = () => {
-  return <PathAnimation />;
+  return <HorizonHeroSection />;
 };
 
 export { DemoOne };
