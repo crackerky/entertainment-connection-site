@@ -1,8 +1,5 @@
-// Uncomment the line below to use the simplified version without postprocessing
-// import { HorizonHeroSectionSimple as HorizonHeroSection } from '@/components/ui/horizon-hero-section-simple'
-
-// Use this for the full version with postprocessing effects
-import { HorizonHeroSection } from '@/components/ui/horizon-hero-section'
+// Use the fixed version with single screen height
+import { HorizonHeroSectionFixed as HorizonHeroSection } from '@/components/ui/horizon-hero-section-fixed'
 
 import Mission from '@/components/sections/mission-new'
 import Vision from '@/components/sections/vision'
