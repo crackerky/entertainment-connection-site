@@ -13,11 +13,6 @@ const nextConfig = {
     ],
   },
   transpilePackages: ['three'],
-  webpack: (config) => {
-    config.externals = config.externals || {};
-    config.externals['three'] = 'THREE';
-    return config;
-  },
 }
 
 module.exports = nextConfig
