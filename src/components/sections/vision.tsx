@@ -37,20 +37,20 @@ export default function Vision() {
 
   return (
     <section ref={containerRef} className="py-20 bg-gradient-to-br from-white via-secondary/10 to-accent/10 relative overflow-hidden">
-      {/* Abstract animated shapes */}
+      {/* Abstract animated shapes with reduced opacity */}
       <div className="absolute inset-0">
         <motion.div 
-          className="absolute top-0 left-0 w-full h-full pattern-grid opacity-20"
+          className="absolute top-0 left-0 w-full h-full pattern-grid opacity-10"
         />
         <motion.div 
-          className="absolute top-20 -left-20 w-96 h-96 bg-secondary/30 morph blur-3xl"
+          className="absolute top-20 -left-20 w-96 h-96 bg-secondary/20 morph blur-3xl"
           style={{ scale, rotate }}
         />
         <motion.div 
-          className="absolute bottom-20 -right-20 w-80 h-80 bg-accent/30 blob-shape blur-3xl float-1"
+          className="absolute bottom-20 -right-20 w-80 h-80 bg-accent/20 blob-shape blur-3xl float-1"
         />
         <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/20 organic-shape blur-2xl float-2"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/10 organic-shape blur-2xl float-2"
         />
       </div>
 
@@ -63,7 +63,11 @@ export default function Vision() {
       >
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient-vibrant"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+            style={{ 
+              color: 'rgb(220, 38, 50)',
+              textShadow: '0 0 30px rgba(220, 38, 50, 0.5), 0 0 60px rgba(220, 38, 50, 0.3), 0 0 90px rgba(220, 38, 50, 0.1)'
+            }}
             {...scrollReveal}
           >
             作りたい世界（Vision）
@@ -94,7 +98,7 @@ export default function Vision() {
               custom={index}
             >
               <motion.div 
-                className={`absolute inset-0 bg-gradient-to-br ${point.gradient} rounded-3xl opacity-20 group-hover:opacity-30 transition-opacity blur-2xl`}
+                className={`absolute inset-0 bg-gradient-to-br ${point.gradient} rounded-3xl opacity-10 group-hover:opacity-20 transition-opacity blur-2xl`}
                 {...pulse}
               />
               
@@ -137,7 +141,7 @@ export default function Vision() {
           variants={fadeInUp}
         >
           <motion.div 
-            className="bg-gradient-to-r from-primary via-secondary to-accent p-1 rounded-3xl gradient-animate neon-primary"
+            className="bg-gradient-to-r from-primary via-secondary to-accent p-1 rounded-3xl gradient-animate"
             whileHover={{ scale: 1.02 }}
           >
             <div className="bg-white rounded-3xl p-12 text-center">
@@ -166,9 +170,9 @@ export default function Vision() {
         </motion.div>
       </motion.div>
 
-      {/* Abstract floating elements */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-accent/20 rounded-full blur-2xl animate-float" />
-      <div className="absolute bottom-10 left-10 w-40 h-40 bg-primary/20 blob-shape blur-3xl animate-blob" />
+      {/* Abstract floating elements with reduced opacity */}
+      <div className="absolute top-10 right-10 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-float" />
+      <div className="absolute bottom-10 left-10 w-40 h-40 bg-primary/10 blob-shape blur-3xl animate-blob" />
     </section>
   )
 }
