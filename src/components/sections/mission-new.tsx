@@ -22,8 +22,8 @@ export default function Mission() {
 
   return (
     <section ref={containerRef} className="py-20 bg-gradient-vibrant gradient-animate relative overflow-hidden">
-      {/* Abstract animated background */}
-      <div className="absolute inset-0 opacity-20">
+      {/* Abstract animated background with reduced opacity */}
+      <div className="absolute inset-0 opacity-10">
         <motion.div 
           className="absolute top-10 left-10 w-96 h-96 bg-primary blob-shape"
           animate={{
@@ -71,7 +71,11 @@ export default function Mission() {
       >
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-white"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+            style={{ 
+              color: 'rgb(220, 38, 50)',
+              textShadow: '0 0 30px rgba(220, 38, 50, 0.5), 0 0 60px rgba(220, 38, 50, 0.3), 0 0 90px rgba(220, 38, 50, 0.1)'
+            }}
             {...scrollReveal}
           >
             理念（Mission）
@@ -79,6 +83,7 @@ export default function Mission() {
           
           <motion.div 
             className="max-w-4xl mx-auto glass p-8 rounded-3xl"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
             variants={bounceIn}
           >
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -97,7 +102,8 @@ export default function Mission() {
           {keywords.map((keyword, index) => (
             <motion.div
               key={index}
-              className="glass-dark rounded-3xl p-8 hover-lift transform-3d neon-primary"
+              className="glass-dark rounded-3xl p-8 hover-lift transform-3d"
+              style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
               variants={scrollReveal}
               {...hoverScale}
               whileHover={{
@@ -137,7 +143,7 @@ export default function Mission() {
           style={{ opacity }}
         >
           <motion.div
-            className="inline-block bg-gradient-to-r from-primary via-secondary to-accent text-white px-8 py-4 rounded-full shadow-2xl neon-accent"
+            className="inline-block bg-gradient-to-r from-primary via-secondary to-accent text-white px-8 py-4 rounded-full shadow-2xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -148,8 +154,8 @@ export default function Mission() {
         </motion.div>
       </motion.div>
 
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 pattern-dots opacity-10 pointer-events-none" />
+      {/* Pattern overlay with reduced opacity */}
+      <div className="absolute inset-0 pattern-dots opacity-5 pointer-events-none" />
     </section>
   )
 }
