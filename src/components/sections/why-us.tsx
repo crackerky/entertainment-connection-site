@@ -40,10 +40,10 @@ export default function WhyUs() {
 
   return (
     <section className="py-20 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative overflow-hidden">
-      {/* Abstract background elements */}
+      {/* Abstract background elements with reduced opacity */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 blob-shape blur-3xl animate-blob" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/10 organic-shape blur-3xl animate-float" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blob-shape blur-3xl animate-blob" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 organic-shape blur-3xl animate-float" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pattern-dots opacity-5" />
       </div>
 
@@ -56,7 +56,11 @@ export default function WhyUs() {
       >
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient-vibrant"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+            style={{ 
+              color: 'rgb(220, 38, 50)',
+              textShadow: '0 0 30px rgba(220, 38, 50, 0.5), 0 0 60px rgba(220, 38, 50, 0.3), 0 0 90px rgba(220, 38, 50, 0.1)'
+            }}
             {...scrollReveal}
           >
             なぜ私たちなのか（Why Us）
@@ -87,9 +91,9 @@ export default function WhyUs() {
                   scale: 1.05,
                 }}
               >
-                {/* Dynamic background shape */}
+                {/* Dynamic background shape with reduced opacity */}
                 <motion.div 
-                  className={`absolute -inset-4 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 ${strength.bgShape} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                  className={`absolute -inset-4 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 ${strength.bgShape} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   animate={{
                     scale: [1, 1.2, 1],
                     rotate: [0, 90, 0],
@@ -104,7 +108,7 @@ export default function WhyUs() {
                 <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all transform-3d border border-gray-100 hover:border-primary/20">
                   {/* Icon container */}
                   <motion.div 
-                    className="w-16 h-16 bg-gradient-to-br from-primary via-secondary to-accent rounded-2xl flex items-center justify-center mb-6 relative z-10 neon-primary"
+                    className="w-16 h-16 bg-gradient-to-br from-primary via-secondary to-accent rounded-2xl flex items-center justify-center mb-6 relative z-10"
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                   >
@@ -150,7 +154,7 @@ export default function WhyUs() {
           >
             <div className="relative">
               <motion.div 
-                className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full blur-lg opacity-75"
+                className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full blur-lg opacity-50"
                 animate={{
                   scale: [1, 1.1, 1],
                 }}
@@ -171,9 +175,9 @@ export default function WhyUs() {
         </motion.div>
       </motion.div>
 
-      {/* Floating decorative elements */}
+      {/* Floating decorative elements with reduced opacity */}
       <motion.div 
-        className="absolute top-10 left-10 w-20 h-20 bg-secondary/20 rounded-full blur-2xl"
+        className="absolute top-10 left-10 w-20 h-20 bg-secondary/10 rounded-full blur-2xl"
         animate={{
           y: [-20, 20, -20],
           x: [-10, 10, -10],
@@ -185,7 +189,7 @@ export default function WhyUs() {
         }}
       />
       <motion.div 
-        className="absolute bottom-10 right-10 w-32 h-32 bg-accent/20 blob-shape blur-3xl"
+        className="absolute bottom-10 right-10 w-32 h-32 bg-accent/10 blob-shape blur-3xl"
         animate={{
           y: [20, -20, 20],
           x: [10, -10, 10],
