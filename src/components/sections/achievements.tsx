@@ -71,7 +71,7 @@ export default function Achievements() {
         { label: 'エンタメ業界特化', value: '専門性あり', isText: true }
       ],
       icon: '📉',
-      color: 'from-green-500 to-emerald-600'
+      gradient: 'from-green-500 to-emerald-600'
     },
     {
       id: 4,
