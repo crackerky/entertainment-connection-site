@@ -45,7 +45,8 @@ export default function Achievements() {
       title: 'DealerStudio',
       stats: [
         { label: 'リリース半年で応募数', value: 150, suffix: '名突破' },
-        { label: 'Instagram広告CPA', before: '¥5,500', after: '¥4,000台', improvement: '27%改善' }
+        { label: 'Instagram広告CPA', before: '¥5,500', after: '¥4,000台', improvement: '27%改善' },
+        { label: '採用管理システム', value: '効率化実現', isText: true }
       ],
       icon: '🎯',
       gradient: 'from-primary to-secondary'
@@ -55,18 +56,30 @@ export default function Achievements() {
       title: '埋め卓くん',
       stats: [
         { label: '対象店舗', value: '過去最高月商', isText: true },
-        { label: 'LINE × Instagram', value: '来店率UP', isText: true }
+        { label: 'LINE × Instagram', value: '来店率UP', isText: true },
+        { label: '集客支援ツール', value: '空席率改善', isText: true }
       ],
       icon: '📈',
       gradient: 'from-secondary to-accent'
     },
     {
       id: 3,
-      title: 'その他実績',
+      title: 'データ分析',
       stats: [
         { label: 'LINE運用代行：平均開封率', value: 48, suffix: '%' },
-        { label: 'CTR', value: 12, suffix: '%' },
-        { label: 'イベント参加者満足度', value: 4.8, suffix: '/5' }
+        { label: 'CTR改善率', value: 12, suffix: '%' },
+        { label: 'エンタメ業界特化', value: '専門性あり', isText: true }
+      ],
+      icon: '📉',
+      color: 'from-green-500 to-emerald-600'
+    },
+    {
+      id: 4,
+      title: '総合実績',
+      stats: [
+        { label: 'イベント参加者満足度', value: 4.8, suffix: '/5' },
+        { label: 'クライアント継続率', value: 95, suffix: '%' },
+        { label: 'エンタメ業界専門', value: '実績豊富', isText: true }
       ],
       icon: '⭐',
       gradient: 'from-accent to-primary'
@@ -82,36 +95,7 @@ export default function Achievements() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-modern relative overflow-hidden">
-      {/* Abstract animated background with reduced opacity */}
-      <div className="absolute inset-0">
-        <motion.div 
-          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.05, 0.15, 0.05],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 blob-shape blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <div className="absolute inset-0 pattern-grid opacity-5" />
-      </div>
-
+    <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
       <motion.div
         className="container mx-auto px-4 relative z-10"
         variants={staggerContainer}
@@ -119,21 +103,23 @@ export default function Achievements() {
         whileInView="animate"
         viewport={{ once: true }}
       >
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div variants={fadeInUp} className="text-center mb-12 lg:mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
-            style={{ 
-              color: 'rgb(220, 38, 50)',
-              textShadow: '0 0 30px rgba(220, 38, 50, 0.5), 0 0 60px rgba(220, 38, 50, 0.3), 0 0 90px rgba(220, 38, 50, 0.1)'
-            }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-8 bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent"
             {...scrollReveal}
           >
-            実績（Achievements）
+            サービス実績（Service Achievements）
           </motion.h2>
+          <motion.p 
+            className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto"
+            variants={fadeInUp}
+          >
+            エンターテイメント業界に特化した4つのサービスで、実際の成果を上げています
+          </motion.p>
         </motion.div>
 
         {/* Achievement Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto mb-20">
           {achievements.map((achievement, index) => (
             <motion.div
               key={achievement.id}
@@ -142,71 +128,44 @@ export default function Achievements() {
               custom={index}
             >
               <motion.div
-                className="group relative"
+                className="bg-white rounded-3xl shadow-xl p-6 lg:p-8 h-full hover:shadow-2xl transition-all"
                 whileHover={{ y: -10, scale: 1.02 }}
               >
-                {/* Animated gradient background with reduced opacity */}
                 <motion.div 
-                  className={`absolute -inset-1 bg-gradient-to-br ${achievement.gradient} rounded-3xl blur-md opacity-20 group-hover:opacity-40 transition-opacity`}
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
+                  className="text-4xl lg:text-6xl mb-4 lg:mb-6 text-center relative z-10"
+                  {...pulse}
+                >
+                  {achievement.icon}
+                </motion.div>
                 
-                <div className="relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 h-full border border-gray-100 group-hover:border-primary/20 transition-all">
-                  <motion.div 
-                    className="text-6xl mb-6 text-center relative z-10"
-                    animate={{
-                      rotate: [0, -10, 10, 0],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      repeatDelay: 2
-                    }}
-                  >
-                    {achievement.icon}
-                  </motion.div>
-                  
-                  <h3 className="text-2xl font-bold text-center mb-6 relative z-10 text-gray-900">
-                    {achievement.title}
-                  </h3>
-                  
-                  <div className="space-y-4 relative z-10">
-                    {achievement.stats.map((stat, statIndex) => (
-                      <motion.div
-                        key={statIndex}
-                        className="text-center"
-                        variants={bounceIn}
-                        custom={statIndex * 0.1}
-                      >
-                        <p className="text-sm text-gray-600 mb-1">{stat.label}</p>
-                        {'isText' in stat && stat.isText ? (
-                          <p className="text-2xl font-bold text-gradient-vibrant">{stat.value}</p>
-                        ) : 'before' in stat && stat.before ? (
-                          <div className="flex items-center justify-center gap-2">
-                            <span className="text-lg line-through text-gray-400">{stat.before}</span>
-                            <span className="text-2xl font-bold text-gradient-vibrant">→ {stat.after}</span>
-                            <span className="text-sm text-secondary font-semibold">({stat.improvement})</span>
-                          </div>
-                        ) : (
-                          <p className="text-3xl font-bold text-gradient-vibrant">
-                            <AnimatedNumber value={stat.value as number} suffix={stat.suffix} />
-                          </p>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Hover effect shimmer */}
-                  <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                    <div className="shimmer" />
-                  </div>
+                <h3 className="text-xl lg:text-2xl font-bold text-center mb-4 lg:mb-6 relative z-10 text-gray-800">
+                  {achievement.title}
+                </h3>
+                
+                <div className="space-y-4 relative z-10">
+                  {achievement.stats.map((stat, statIndex) => (
+                    <motion.div
+                      key={statIndex}
+                      className="text-center mb-3 lg:mb-4"
+                      variants={bounceIn}
+                      custom={statIndex * 0.1}
+                    >
+                      <p className="text-xs lg:text-sm text-gray-600 mb-1 lg:mb-2 font-medium">{stat.label}</p>
+                      {'isText' in stat && stat.isText ? (
+                        <p className="text-lg lg:text-xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">{stat.value}</p>
+                      ) : 'before' in stat && stat.before ? (
+                        <div className="flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-2">
+                          <span className="text-sm lg:text-base line-through text-gray-400">{stat.before}</span>
+                          <span className="text-lg lg:text-xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">→ {stat.after}</span>
+                          <span className="text-xs lg:text-sm text-green-600 font-semibold">({stat.improvement})</span>
+                        </div>
+                      ) : (
+                        <p className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">
+                          <AnimatedNumber value={stat.value as number} suffix={stat.suffix} />
+                        </p>
+                      )}
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </motion.div>
