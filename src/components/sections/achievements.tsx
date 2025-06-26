@@ -142,7 +142,7 @@ export default function Achievements() {
   ]
 
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+    <section className="py-16 lg:py-20 bg-white relative overflow-hidden">
       <motion.div
         className="container mx-auto px-4 relative z-10"
         variants={staggerContainer}
@@ -158,10 +158,10 @@ export default function Achievements() {
             サービス実績（Service Achievements）
           </motion.h2>
           <motion.p 
-            className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto font-medium"
             variants={fadeInUp}
           >
-            エンターテイメント業界に特化した4つのサービスで、実際の成果を上げています
+            私たちは実績で証明します。4つのサービスで具体的な成果を創出しています。
           </motion.p>
         </motion.div>
 
@@ -175,7 +175,7 @@ export default function Achievements() {
               custom={index}
             >
               <motion.div
-                className="bg-white rounded-3xl shadow-xl p-6 lg:p-8 h-full hover:shadow-2xl transition-all"
+                className="bg-white rounded-3xl shadow-xl p-6 lg:p-8 h-full hover:shadow-2xl transition-all border border-gray-100"
                 whileHover={{ y: -10, scale: 1.02 }}
               >
                 <motion.div 
@@ -232,7 +232,7 @@ export default function Achievements() {
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all"
+                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all border border-gray-100"
                 variants={scrollReveal}
                 custom={index * 0.1}
                 whileHover={{ y: -5 }}
@@ -258,21 +258,21 @@ export default function Achievements() {
 
         {/* Why Choose Us Section */}
         <motion.div
-          className="max-w-6xl mx-auto bg-gradient-to-r from-violet-600 to-blue-600 rounded-3xl p-12 text-white"
+          className="max-w-6xl mx-auto bg-gradient-to-r from-violet-600 to-blue-600 rounded-3xl p-12 text-white shadow-2xl"
           variants={fadeInUp}
         >
           <h3 className="text-3xl font-bold text-center mb-8">
             なぜ私たちを選ぶのか
           </h3>
           
-          <p className="text-xl text-center mb-12 leading-relaxed">
+          <p className="text-xl text-center mb-12 leading-relaxed font-medium">
             エンタメ業界の課題を深く理解し、実績で証明してきた私たちだからこそ、<br />
             あなたのビジネスを次のステージへ導けます
           </p>
           
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
+              className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 border border-white/30"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -280,13 +280,19 @@ export default function Achievements() {
                 実績を伴う「エンタメ × HR/集客」の専門家
               </h4>
               <div className="space-y-3 text-lg">
-                <p>• DealerStudio：150名超の応募獲得</p>
-                <p>• 埋め卓くん：店舗の過去最高売上を更新</p>
+                <p className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>DealerStudio：150名超の応募獲得</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>埋め卓くん：店舗の過去最高売上を更新</span>
+                </p>
               </div>
             </motion.div>
             
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
+              className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 border border-white/30"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -294,27 +300,47 @@ export default function Achievements() {
                 データドリブンな運用とスピード感
               </h4>
               <div className="space-y-3 text-lg">
-                <p>• CPA最適化</p>
-                <p>• A/Bテスト</p>
-                <p>• 即日PDCA</p>
+                <p className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>CPA最適化</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>A/Bテスト</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>即日PDCA</span>
+                </p>
               </div>
             </motion.div>
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Floating decorative elements with reduced opacity */}
+      {/* Decorative elements */}
       <motion.div 
-        className="absolute top-20 right-20 w-24 h-24 bg-secondary/10 organic-shape blur-2xl"
+        className="absolute top-10 left-10 w-32 h-32 bg-violet-100 rounded-full blur-3xl opacity-30"
         animate={{
-          y: [-30, 30, -30],
-          x: [20, -20, 20],
-          rotate: [0, 180, 360],
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 20,
+          duration: 5,
           repeat: Infinity,
-          ease: "linear"
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-10 right-10 w-40 h-40 bg-blue-100 rounded-full blur-3xl opacity-30"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
     </section>
