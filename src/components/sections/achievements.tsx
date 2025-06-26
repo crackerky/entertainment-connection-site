@@ -38,6 +38,16 @@ interface Achievement {
   gradient: string;
 }
 
+interface Service {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  icon: string;
+  gradient: string;
+}
+
 export default function Achievements() {
   const achievements: Achievement[] = [
     {
@@ -70,7 +80,7 @@ export default function Achievements() {
         { label: 'CTR改善率', value: 12, suffix: '%' },
         { label: 'エンタメ業界特化', value: '専門性あり', isText: true }
       ],
-      icon: '📉',
+      icon: '📊',
       gradient: 'from-green-500 to-emerald-600'
     },
     {
@@ -86,12 +96,49 @@ export default function Achievements() {
     }
   ]
 
-  const photos = [
-    { type: '体験型ショット', emoji: '🎪', description: 'ポーカーテーブルで盛り上がる来店客' },
-    { type: 'プロダクト画面', emoji: '💻', description: 'DealerStudio & 埋め卓くんのUI' },
-    { type: 'チーム写真', emoji: '👥', description: '多様性あるメンバーの議論' },
-    { type: '成果グラフ', emoji: '📊', description: '売上推移や応募数の成長カーブ' },
-    { type: 'コミュニティ', emoji: '🤝', description: 'イベントやユーザー交流シーン' }
+  const services: Service[] = [
+    {
+      id: 1,
+      title: 'DealerStudio',
+      subtitle: '採用管理システム',
+      description: 'エンタメ業界に特化した採用管理システム。応募から採用まで一元管理し、採用効率を大幅に改善。',
+      features: [
+        '応募者情報の一元管理',
+        'Instagram広告との連携',
+        'リアルタイムレポート機能',
+        'モバイル対応で現場でも確認可能'
+      ],
+      icon: '💼',
+      gradient: 'from-violet-600 to-blue-600'
+    },
+    {
+      id: 2,
+      title: '埋め卓くん',
+      subtitle: '集客支援ツール',
+      description: 'ポーカーバーやアミューズメント施設の空席を効率的に埋める集客支援ツール。',
+      features: [
+        'LINE・Instagram連携',
+        'リアルタイム空席管理',
+        '自動集客メッセージ配信',
+        '来店分析・レポート機能'
+      ],
+      icon: '🎰',
+      gradient: 'from-blue-600 to-cyan-600'
+    },
+    {
+      id: 3,
+      title: 'データ分析サービス',
+      subtitle: 'エンタメ業界特化',
+      description: 'エンタメ業界のマーケティングデータを分析し、最適な施策を提案。',
+      features: [
+        'LINE運用代行・分析',
+        'Instagram広告運用',
+        'A/Bテスト実施',
+        'CPA最適化・改善提案'
+      ],
+      icon: '📊',
+      gradient: 'from-cyan-600 to-teal-600'
+    }
   ]
 
   return (
@@ -172,39 +219,86 @@ export default function Achievements() {
           ))}
         </div>
 
-        {/* Photo Ideas Section */}
+        {/* Services Section */}
         <motion.div
-          className="max-w-6xl mx-auto"
+          className="max-w-7xl mx-auto mb-20"
           variants={fadeInUp}
         >
-          <h3 className="text-3xl font-bold text-center mb-12 text-primary">
-            載せたい写真アイデア
+          <h3 className="text-3xl font-bold text-center mb-12 text-gray-800">
+            事業紹介
           </h3>
           
-          <div className="grid md:grid-cols-5 gap-6">
-            {photos.map((photo, index) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
               <motion.div
-                key={index}
-                className="text-center group"
+                key={service.id}
+                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all"
                 variants={scrollReveal}
                 custom={index * 0.1}
+                whileHover={{ y: -5 }}
               >
-                <motion.div
-                  className="relative w-24 h-24 mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                  />
-                  <div className="relative w-full h-full bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl flex items-center justify-center group-hover:shadow-lg transition-all">
-                    <span className="text-4xl">{photo.emoji}</span>
-                  </div>
-                </motion.div>
-                <h4 className="font-semibold text-gray-900 mb-2">{photo.type}</h4>
-                <p className="text-sm text-gray-600">{photo.description}</p>
+                <div className={`text-5xl mb-4 bg-gradient-to-br ${service.gradient} bg-clip-text text-transparent`}>
+                  {service.icon}
+                </div>
+                <h4 className="text-2xl font-bold text-gray-800 mb-2">{service.title}</h4>
+                <p className="text-lg text-gray-600 mb-4">{service.subtitle}</p>
+                <p className="text-gray-700 mb-6">{service.description}</p>
+                <ul className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="text-green-500 mr-2 mt-1">✓</span>
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Why Choose Us Section */}
+        <motion.div
+          className="max-w-6xl mx-auto bg-gradient-to-r from-violet-600 to-blue-600 rounded-3xl p-12 text-white"
+          variants={fadeInUp}
+        >
+          <h3 className="text-3xl font-bold text-center mb-8">
+            なぜ私たちを選ぶのか
+          </h3>
+          
+          <p className="text-xl text-center mb-12 leading-relaxed">
+            エンタメ業界の課題を深く理解し、実績で証明してきた私たちだからこそ、<br />
+            あなたのビジネスを次のステージへ導けます
+          </p>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h4 className="text-2xl font-bold mb-4">
+                実績を伴う"エンタメ × HR/集客"の専門家
+              </h4>
+              <div className="space-y-3 text-lg">
+                <p>• DealerStudio：150名超の応募獲得</p>
+                <p>• 埋め卓くん：店舗の過去最高売上を更新</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h4 className="text-2xl font-bold mb-4">
+                データドリブンな運用とスピード感
+              </h4>
+              <div className="space-y-3 text-lg">
+                <p>• CPA最適化</p>
+                <p>• A/Bテスト</p>
+                <p>• 即日PDCA</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </motion.div>
