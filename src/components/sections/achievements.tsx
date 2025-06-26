@@ -4,6 +4,7 @@ import { motion, useSpring, useTransform } from 'framer-motion'
 import { fadeInUp, staggerContainer, scrollReveal, bounceIn, pulse } from '@/lib/animations'
 import { useState, useEffect } from 'react'
 
+// Force rebuild: 2025-06-26 19:22
 function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string }) {
   const [displayValue, setDisplayValue] = useState(0)
   const spring = useSpring(0, { stiffness: 100, damping: 30 })
@@ -142,7 +143,7 @@ export default function Achievements() {
   ]
 
   return (
-    <section className="py-16 lg:py-20 bg-white relative overflow-hidden">
+    <section id="achievements-section" className="py-16 lg:py-20 bg-white relative overflow-hidden">
       <motion.div
         className="container mx-auto px-4 relative z-10"
         variants={staggerContainer}
