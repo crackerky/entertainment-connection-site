@@ -277,7 +277,7 @@ export default function Achievements() {
               transition={{ duration: 0.3 }}
             >
               <h4 className="text-2xl font-bold mb-4">
-                実績を伴う"エンタメ × HR/集客"の専門家
+                実績を伴う「エンタメ × HR/集客」の専門家
               </h4>
               <div className="space-y-3 text-lg">
                 <p>• DealerStudio：150名超の応募獲得</p>
