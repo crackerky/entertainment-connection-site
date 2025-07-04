@@ -259,3 +259,113 @@ export const numberCounter = (target: number, duration: number = 2) => ({
   },
   viewport: { once: true, amount: 0.8 }
 });
+
+// Section transition animations
+export const sectionTransitions = {
+  // Fade and slide transition between sections
+  fadeSlide: {
+    initial: { opacity: 0, y: 100 },
+    whileInView: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -100,
+      transition: {
+        duration: 0.6
+      }
+    },
+    viewport: { once: false, amount: 0.3 }
+  },
+
+  // Zoom and fade transition
+  zoomFade: {
+    initial: { opacity: 0, scale: 0.8 },
+    whileInView: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.43, 0.13, 0.23, 0.96]
+      }
+    },
+    viewport: { once: false, amount: 0.4 }
+  },
+
+  // Blur transition
+  blurTransition: {
+    initial: { 
+      opacity: 0, 
+      filter: "blur(10px)",
+      y: 50
+    },
+    whileInView: {
+      opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: "easeOut"
+      }
+    },
+    viewport: { once: false, amount: 0.3 }
+  },
+
+  // Diagonal slide
+  diagonalSlide: {
+    initial: { 
+      opacity: 0, 
+      x: -100,
+      y: 100
+    },
+    whileInView: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut"
+      }
+    },
+    viewport: { once: false, amount: 0.3 }
+  }
+};
+
+// Smooth scroll transitions for connected sections
+export const connectedSectionFlow = {
+  // Wave transition effect
+  wave: {
+    initial: { 
+      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)"
+    },
+    whileInView: {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    },
+    viewport: { once: false, amount: 0.2 }
+  },
+
+  // Curtain reveal
+  curtain: {
+    initial: { 
+      scaleY: 0,
+      transformOrigin: "top"
+    },
+    whileInView: {
+      scaleY: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    },
+    viewport: { once: false, amount: 0.3 }
+  }
+};
