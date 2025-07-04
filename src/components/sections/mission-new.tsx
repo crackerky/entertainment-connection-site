@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { fadeInUp, staggerContainer, scrollReveal, hoverScale, bounceIn } from '@/lib/animations'
+import { sectionTransitions } from '@/lib/enhanced-animations'
 import { useRef } from 'react'
 
 export default function Mission() {
@@ -21,7 +22,10 @@ export default function Mission() {
   ]
 
   return (
-    <section ref={containerRef} className="py-20 bg-gradient-vibrant gradient-animate relative overflow-hidden">
+    <motion.section 
+      ref={containerRef} 
+      className="py-20 bg-gradient-vibrant gradient-animate relative overflow-hidden"
+      {...sectionTransitions.fadeSlide}>
       {/* Abstract animated background with reduced opacity */}
       <div className="absolute inset-0 opacity-10">
         <motion.div 
@@ -156,6 +160,6 @@ export default function Mission() {
 
       {/* Pattern overlay with reduced opacity */}
       <div className="absolute inset-0 pattern-dots opacity-5 pointer-events-none" />
-    </section>
+    </motion.section>
   )
 }

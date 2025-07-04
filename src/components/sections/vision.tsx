@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { fadeInUp, staggerContainer, scrollReveal, float, pulse } from '@/lib/animations'
+import { sectionTransitions } from '@/lib/enhanced-animations'
 import { useRef } from 'react'
 
 export default function Vision() {
@@ -36,7 +37,10 @@ export default function Vision() {
   ]
 
   return (
-    <section ref={containerRef} className="py-20 bg-gradient-to-br from-white via-secondary/10 to-accent/10 relative overflow-hidden">
+    <motion.section 
+      ref={containerRef} 
+      className="py-20 bg-gradient-to-br from-white via-secondary/10 to-accent/10 relative overflow-hidden"
+      {...sectionTransitions.blurTransition}>
       {/* Abstract animated shapes with reduced opacity */}
       <div className="absolute inset-0">
         <motion.div 
@@ -173,6 +177,6 @@ export default function Vision() {
       {/* Abstract floating elements with reduced opacity */}
       <div className="absolute top-10 right-10 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-float" />
       <div className="absolute bottom-10 left-10 w-40 h-40 bg-primary/10 blob-shape blur-3xl animate-blob" />
-    </section>
+    </motion.section>
   )
 }
